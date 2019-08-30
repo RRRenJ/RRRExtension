@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
 
     func cutRound(radius:CGFloat, _ corners:UIRectCorner?, _ auto:Bool?) {
         let shapeLayer = CAShapeLayer()

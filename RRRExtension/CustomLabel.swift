@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UILabel{
+public extension UILabel{
 
     convenience init( title:String, color:UIColor, font:UIFont, _ textAlignment:NSTextAlignment?, _ frame:CGRect?) {
         self.init()

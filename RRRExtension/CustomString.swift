@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension String {
+public extension String {
 
     var length: Int {
         return self.count
@@ -34,7 +34,7 @@ extension String {
     }
 }
 
-extension String {
+public extension String {
     
     func boundingRect(with constrainedSize: CGSize, font: UIFont, lineSpacing: CGFloat? = nil, lines: Int) -> CGSize {
         
@@ -80,7 +80,7 @@ extension String {
     }
 }
 
-extension String {
+public extension String {
     
     func validate(regex:String) -> Bool {
         let pre = NSPredicate(format: "SELF MATCHES %@", regex)

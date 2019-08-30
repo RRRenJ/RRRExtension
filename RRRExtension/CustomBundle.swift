@@ -29,7 +29,7 @@ private class BundleEx: Bundle {
 }
 
 
-extension Bundle {
+public extension Bundle {
  
     class func initBundle() {
         object_setClass(Bundle.main, BundleEx.self)

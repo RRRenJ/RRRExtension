@@ -10,7 +10,7 @@ import UIKit
 
 
 
-extension Date {
+public extension Date {
     
     enum Formate {
         case yMdHms
@@ -130,7 +130,7 @@ extension Date {
 
 }
 
-extension Date {
+public extension Date {
     
     func year() -> Int {
         return Calendar.current.component(Calendar.Component.year, from: self)

@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-extension UIImage {
+public extension UIImage {
     //image切圆
     func cutCircle() -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.size, false, 0.0)

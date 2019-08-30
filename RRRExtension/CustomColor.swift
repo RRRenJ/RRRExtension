@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIColor {
+public extension UIColor {
 
     class func hex(hexCode:String) -> UIColor {
        var cleanCode = hexCode.replacingOccurrences(of:"#", with:"")
@@ -35,7 +35,7 @@ extension UIColor {
 
 }
 
-extension UIColor {
+public extension UIColor {
     
     class func gradientColor(view:UIView, fromColor:UIColor, toColor:UIColor, fromPoint:CGPoint, toPoint:CGPoint) ->CAGradientLayer {
         let gradientLayer = CAGradientLayer()

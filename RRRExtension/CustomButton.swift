@@ -9,9 +9,7 @@
 import UIKit
 
 
-
-
-extension UIButton {
+public extension UIButton {
 
     convenience init(title:String?, titleColor:UIColor?, btColor:UIColor, _ frame:CGRect?, _ type:UIButton.ButtonType?){
         self.init(type: type ?? ButtonType.system)
@@ -24,7 +22,7 @@ extension UIButton {
     }
 }
 
-extension UIButton{
+public extension UIButton{
     //button图片位置
     enum EdgeInsetsStyle {
         case top

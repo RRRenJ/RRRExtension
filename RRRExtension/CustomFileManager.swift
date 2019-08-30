@@ -8,7 +8,8 @@
 
 import UIKit
 
-extension FileManager {
+
+public extension FileManager {
 
     
     /// 检测指定全路径的文件是否存在
