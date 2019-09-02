@@ -11,7 +11,7 @@ import UIKit
 
 let  AppLanguageDidChangeNotification = Notification.Name(rawValue: "com.rrren.languagedidchange")
 private let  AppLanguageSwitchKey = "App_Language_Switch_Key"
-private var  kBundleKey = "kBundleKey";
+private var  kBundleKey = "kBundleKey"
 
 private class BundleEx: Bundle {
     
