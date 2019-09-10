@@ -18,6 +18,7 @@ public extension UILabel{
         self.textAlignment = textAlignment ?? NSTextAlignment.left
         if let _ = frame {
             self.frame = frame!
+            
         }
     }
     
