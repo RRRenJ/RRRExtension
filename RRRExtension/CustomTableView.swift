@@ -10,9 +10,15 @@ import UIKit
 
 public extension UITableView {
 
-    func footerViewEmpty() {
+    func footerViewEmpty(_ color:UIColor?) {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 34))
+        view.backgroundColor = color
+        self.tableFooterView = view
+    }
+    func footerViewEmptyAll() {
         self.tableFooterView = UIView()
     }
+
     
     func footerView(message:String, msgFrame:CGRect, _ image:String?, _ imgFrame:CGRect?) {
         let footerView : UIView!
