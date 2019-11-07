@@ -32,7 +32,7 @@ public extension UIImage {
         
     }
     //根据颜色获得图片
-    class func create(color:UIColor, size:CGSize) -> UIImage{
+    static func create(color:UIColor, size:CGSize) -> UIImage{
         let imageW = size.width
         let imageH = size.height
         
@@ -44,7 +44,7 @@ public extension UIImage {
         return image!
     }
     //根据url获取size
-    class func getSize(url : AnyObject) -> CGSize{
+    static func getSize(url : AnyObject) -> CGSize{
         var uRL : URL
         if url is String {
             uRL = URL(string: url as! String)!

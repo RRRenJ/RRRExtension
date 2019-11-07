@@ -31,14 +31,14 @@ private class BundleEx: Bundle {
 
 public extension Bundle {
  
-    class func initBundle() {
+    static func initBundle() {
         object_setClass(Bundle.main, BundleEx.self)
         let language = BundleEx.getCurrentLanguage()
         BundleEx.setLanguage(language: language)
     }
     
     
-    class func setLanguage(language:String?) {
+    static func setLanguage(language:String?) {
         
         var value : Bundle?
         if let _ = language{
@@ -60,7 +60,7 @@ public extension Bundle {
         
     }
     
-    class func getCurrentLanguage() -> String{
+    static func getCurrentLanguage() -> String{
         let language = UserDefaults.standard.object(forKey: AppLanguageSwitchKey) as! String?
         if let _ = language {
             return language!
@@ -78,7 +78,7 @@ public extension Bundle {
         }
     }
     
-    class func restoreSystemLanguage() {
+    static func restoreSystemLanguage() {
         self.setLanguage(language: nil)
     }
     

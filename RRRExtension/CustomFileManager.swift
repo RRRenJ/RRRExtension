@@ -16,7 +16,7 @@ public extension FileManager {
     ///
     /// - Parameter path: 文件的全路径
     /// - Returns: 存在还回true,否则返回false
-    class func fileExist(path:String) -> Bool {
+    static func fileExist(path:String) -> Bool {
         return FileManager.default.fileExists(atPath: path)
     }
     
@@ -24,7 +24,7 @@ public extension FileManager {
     ///
     /// - Parameter path: 目录的全路径
     /// - Returns: 存在还回true,否则返回false
-    class func dirExist(path:String) -> Bool {
+    static func dirExist(path:String) -> Bool {
         var isDir = ObjCBool.init(false)
         if !FileManager.default.fileExists(atPath: path, isDirectory: &isDir) || !isDir.boolValue {
             return false
@@ -36,7 +36,7 @@ public extension FileManager {
     ///
     /// - Parameter path: 指定目录路径
     /// - Returns: 成功返回true
-    class func mkDir(path:String) -> Bool {
+    static func mkDir(path:String) -> Bool {
         if !FileManager.dirExist(path: path) {
             
             do {
@@ -59,7 +59,7 @@ public extension FileManager {
     ///   - from: 移动源路径
     ///   - to: 移动目标路径
     /// - Returns: 成功返回true
-    class func cut(from:String, to:String) -> Bool {
+    static func cut(from:String, to:String) -> Bool {
         do {
             try  FileManager.default.moveItem(at: URL(fileURLWithPath: from), to: URL(fileURLWithPath: to))
             return true
@@ -75,7 +75,7 @@ public extension FileManager {
     ///   - from: 源路径
     ///   - to: 目标路径
     /// - Returns: 成功返回true
-    class func copy(from:String, to:String) -> Bool {
+    static func copy(from:String, to:String) -> Bool {
         do {
             try  FileManager.default.copyItem(at: URL(fileURLWithPath: from), to: URL(fileURLWithPath: to))
             return true
@@ -85,7 +85,7 @@ public extension FileManager {
         }
     }
     
-    class func deleteFile(path:String) -> Bool {
+    static func deleteFile(path:String) -> Bool {
         do {
             try  FileManager.default.removeItem(atPath: path)
             return true
@@ -95,16 +95,51 @@ public extension FileManager {
         }
     }
     
-    
-    class func freeDiskSpaceInBytes() -> Int64 {
-        var buf = UnsafeMutablePointer<statfs>.allocate(capacity: MemoryLayout<statfs>.size).pointee
-        if statfs("/var", &buf) >= 0 {
-            return Int64(UInt64(buf.f_bsize) * buf.f_bavail)
+    static func getFileSize(path : String) -> UInt64 {
+        if !self.fileExist(path: path) {
+            return 0
         }
-        return -1
+        var size : UInt64 = 0
+        
+        do {
+            let attr = try FileManager.default.attributesOfItem(atPath: path)
+            size = attr[FileAttributeKey.size] as! UInt64
+            let dict = attr as NSDictionary
+            size = dict.fileSize()
+            return size
+        } catch {
+            return 0
+        }
     }
     
-    class func fileSizeToString(fileSize:Int64) -> String {
+    
+    static func getDirSize(path : String) -> UInt64 {
+        if !self.dirExist(path: path) {
+            return 0
+        }
+        let childFiles = FileManager.default.subpaths(atPath: path)
+        
+        var size : UInt64 = 0
+        if let _ = childFiles {
+            for childPath in childFiles! {
+            let filePath = path + "/" + childPath
+                size += self.getFileSize(path: filePath)
+            }
+            return size
+        }else{
+            return 0
+        }
+    }
+    
+    static func freeDiskSpaceInBytes() -> UInt64 {
+        var buf = UnsafeMutablePointer<statfs>.allocate(capacity: MemoryLayout<statfs>.size).pointee
+        if statfs("/var", &buf) >= 0 {
+            return UInt64(UInt64(buf.f_bsize) * buf.f_bavail)
+        }
+        return 0
+    }
+    
+    static func spaceSizeToString(fileSize:UInt64) -> String {
         let fileSize1 = CGFloat(fileSize)
         let KB:CGFloat = 1024
         let MB:CGFloat = KB*KB

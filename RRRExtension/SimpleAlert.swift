@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIAlertController {
 
-  class func create(_ title:String?, _ message:String?, style:UIAlertController.Style, actions:[(UIAlertAction.Style, String)], hander:@escaping (Int) -> ()) -> UIAlertController{
+  static func create(_ title:String?, _ message:String?, style:UIAlertController.Style, actions:[(UIAlertAction.Style, String)], hander:@escaping (Int) -> ()) -> UIAlertController{
         let alert  = UIAlertController.init(title: title, message: message, preferredStyle: style)
     
         for (index, item) in actions.enumerated() {

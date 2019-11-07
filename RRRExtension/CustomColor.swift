@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIColor {
 
-    class func hex(hexCode:String) -> UIColor {
+    static func hex(hexCode:String) -> UIColor {
        var cleanCode = hexCode.replacingOccurrences(of:"#", with:"")
         if cleanCode.count == 3 {
             
@@ -37,7 +37,7 @@ public extension UIColor {
 
 public extension UIColor {
     
-    class func gradientColor(view:UIView, fromColor:UIColor, toColor:UIColor, fromPoint:CGPoint, toPoint:CGPoint) ->CAGradientLayer {
+    static func gradientColor(view:UIView, fromColor:UIColor, toColor:UIColor, fromPoint:CGPoint, toPoint:CGPoint) ->CAGradientLayer {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [fromColor.cgColor,toColor.cgColor]
