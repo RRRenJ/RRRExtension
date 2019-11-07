@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension URL {
+public extension URL {
     
     static func initPercent(string:String) -> URL? {
         let percentStr = string.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)

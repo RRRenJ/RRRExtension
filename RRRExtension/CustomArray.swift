@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension Array where Element : Equatable  {
+public extension Array where Element : Equatable  {
 
     mutating func delete(_ object : Element) {
         if let index = self.firstIndex(of: object) {

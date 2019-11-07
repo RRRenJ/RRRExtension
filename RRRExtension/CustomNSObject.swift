@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension NSObject {
+public extension NSObject {
     func getProperty(name: String) -> Any? {
         guard let _var = class_getInstanceVariable(type(of: self), name) else {
             return nil

@@ -114,7 +114,7 @@ public extension String {
     
 }
 
-extension String {
+public extension String {
 
     func clearHtml(comple :@escaping (String) -> Void) {
         
