@@ -11,9 +11,14 @@ import UIKit
 public extension UITableView {
 
     func footerViewEmpty(_ color:UIColor?) {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 34))
-        view.backgroundColor = color
-        self.tableFooterView = view
+        if CGFloat(UIApplication.shared.statusBarFrame.size.height) > 20 {
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 34))
+                view.backgroundColor = color
+                self.tableFooterView = view
+        }else{
+            self.tableFooterView = UIView()
+        }
+       
     }
     func footerViewEmptyAll() {
         self.tableFooterView = UIView()
