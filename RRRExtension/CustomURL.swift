@@ -11,7 +11,13 @@ import UIKit
 public extension URL {
     
     static func initPercent(string:String) -> URL? {
-        let percentStr = string.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let unEncodeStr = string.removingPercentEncoding
+        let percentStr : String?
+        if unEncodeStr != nil {
+            percentStr = unEncodeStr!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        }else{
+            percentStr = string.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        }
         let url = URL.init(string: percentStr ?? "")
         return url
     }
