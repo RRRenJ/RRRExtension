@@ -93,7 +93,7 @@ public extension String {
     }
     
     func validataPhoneNumber() -> Bool {
-        let phoneRegex = "^1[345789]\\d{9}$"
+        let phoneRegex = "^1\\d{10}$"
         return self.validate(regex: phoneRegex)
     }
     
