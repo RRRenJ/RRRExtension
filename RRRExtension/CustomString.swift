@@ -116,7 +116,7 @@ public extension String {
 
 public extension String {
 
-    func clearHtml(comple :@escaping (String) -> Void) {
+    func clearHtml(marks:[String]?,comple :@escaping (String) -> Void) {
         
         DispatchQueue.global().async {
             var content = self
@@ -128,6 +128,12 @@ public extension String {
                 content = content.replacingOccurrences(of: "\(str == nil ? "" : str!)>", with: "")
                 content = content.replacingOccurrences(of: "\r", with: "")
                 content = content.replacingOccurrences(of: "\n", with: "")
+                content = content.replacingOccurrences(of: "&nbsp;", with: "")
+                if let _ = marks{
+                    for mark in marks! {
+                        content = content.replacingOccurrences(of: mark, with: "")
+                    }
+                }
             }
             DispatchQueue.main.async {
                 comple(content)
