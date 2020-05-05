@@ -11,7 +11,7 @@ import UIKit
 
 
 public extension Date {
-    
+
     enum Formate {
         case yMdHms
         case yMd
@@ -25,7 +25,7 @@ public extension Date {
     ///   - string: string
     ///   - format: Formate
     /// - Returns: date
-    func dateFromString(string:String, _ format:Formate?) -> Date? {
+    static func dateFromString(string:String, _ format:Formate?) -> Date? {
         let dateFormat = DateFormatter.init()
         if let _ = format {
             var formatStr :String!
@@ -41,7 +41,6 @@ public extension Date {
             case .Hm:
                 formatStr = "HH:mm"
             }
-            
             dateFormat.dateFormat = formatStr
         }else{
             dateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -75,56 +74,57 @@ public extension Date {
         }
         return dateFormat.string(from: self)
     }
-    /// 和当前时间比较
+    
+    //24小时制HHmm转12小时制
+    func HHmmTohhmm() -> String {
+        var hour = 0
+        var min = 0
+        if self.hour() >= 12 {
+            hour = self.hour() - 12
+            min = self.minute()
+            if hour == 0 {
+                return "12:\(min) am"
+            }else{
+                return "\(hour):\(min) pm"
+            }
+        }else{
+            hour = self.hour()
+            min = self.minute()
+            if hour == 0 {
+                return "12:\(min) pm"
+            }else{
+                return "\(hour):\(min) am"
+            }
+        }
+    }
+    
+    /// 后面的时间和前面的时间相比  为正
     ///
     /// - Parameter time: 比较的时间
     /// - Returns:
-    func compareTime(time:String) -> String {
-        let dateFormat = DateFormatter.init()
-        dateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let expireDate = dateFormat.date(from: time)
-        if let _ = expireDate {
-            let nowDate = Date()
-            let calendar = Calendar.current
-            let unit : Set<Calendar.Component> = [Calendar.Component.year,Calendar.Component.month,Calendar.Component.day]
-            
-            let dateCom = calendar.dateComponents(unit, from: nowDate, to: expireDate!)
-            
-            if let _ = dateCom.year{
-                dateFormat.dateFormat = "yyyy-MM-dd"
-                return dateFormat.string(from: expireDate!)
-            }
-            if let _ = dateCom.month{
-                dateFormat.dateFormat = "MM-dd"
-                return dateFormat.string(from: expireDate!)
-            }
-            if let _ = dateCom.day{
-                dateFormat.dateFormat = "MM-dd HH:mm"
-                return dateFormat.string(from: expireDate!)
-            }
-            dateFormat.dateFormat = "HH:mm"
-            return dateFormat.string(from: expireDate!)
-        }else{
-            return time
-        }
+    func compareWithTime(_ date : Date) -> Int {
+        let time = self.timeIntervalSince(date)
+        return Int(time)
     }
     /**
      获取时间戳 毫秒级
      */
-    func timestamp() -> String {
+    func timestamp() -> Int64 {
        let  time = self.timeIntervalSince1970 * 1000
-        return String(time)
+        return Int64(time)
     }
     
     /// 根据时间戳获取时间 毫秒级
     ///
     /// - Parameter tims: 毫秒级时间戳
     /// - Returns: 时间
-    func dateFromTimestamp(tims:Double) -> Date {
+    static func dateFromTimestamp(tims:Int64) -> Date {
         let interval = tims / 1000
         
-        return Date.init(timeIntervalSince1970: interval)
+        return Date.init(timeIntervalSince1970: TimeInterval(interval))
     }
+    
+    
     
     
 
@@ -143,7 +143,16 @@ public extension Date {
     func day() -> Int {
         return Calendar.current.component(Calendar.Component.day, from: self)
     }
-    
+    func hour() -> Int {
+        return Calendar.current.component(.hour, from: self)
+    }
+    func minute() -> Int {
+        return Calendar.current.component(.minute, from: self)
+    }
+    func second() -> Int {
+        return Calendar.current.component(.second, from: self)
+    }
+    ///1为周末
     func weekDay() -> Int {
         return Calendar.current.component(Calendar.Component.weekday, from: self)
     }
@@ -173,7 +182,26 @@ public extension Date {
             return Date().day() == self.day()
         }
     }
-    
-    
-    
+}
+
+public extension Date {
+    static func weekDay(_ week : Int) -> String? {
+        if week == 1 {
+            return "日"
+        }else if week == 2 {
+            return "一"
+        }else if week == 3 {
+            return "二"
+        }else if week == 4 {
+            return "三"
+        }else if week == 5 {
+            return "四"
+        }else if week == 6 {
+            return "五"
+        }else if week == 7 {
+            return "六"
+        }else{
+            return nil
+        }
+    }
 }

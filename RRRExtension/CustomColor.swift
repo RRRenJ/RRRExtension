@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIColor {
 
-    static func hex(hexCode:String) -> UIColor {
+    static func hex(_ hexCode:String) -> UIColor {
        var cleanCode = hexCode.replacingOccurrences(of:"#", with:"")
         if cleanCode.count == 3 {
             

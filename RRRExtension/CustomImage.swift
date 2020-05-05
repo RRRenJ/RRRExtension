@@ -31,6 +31,20 @@ public extension UIImage {
         return reSizeImage?.withRenderingMode(.alwaysOriginal) ?? self
         
     }
+    
+    //修改图片颜色
+    func imageChangeWith(color : UIColor) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(self.size, false, 0)
+        color.setFill()
+        let bounds = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+        UIRectFill(bounds)
+        self.draw(in: bounds, blendMode: .overlay, alpha: 1)
+        self.draw(in: bounds, blendMode: .destinationIn, alpha: 1)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+    
     //根据颜色获得图片
     static func create(color:UIColor, size:CGSize) -> UIImage{
         let imageW = size.width
@@ -62,6 +76,7 @@ public extension UIImage {
         return imageSize
         
     }
+
     
     
 

@@ -11,11 +11,11 @@ import UIKit
 
 public extension UIButton {
 
-    convenience init(title:String?, titleColor:UIColor?, btColor:UIColor, _ frame:CGRect?, _ type:UIButton.ButtonType?){
+    convenience init(title:String?, titleColor:UIColor?, btColor:UIColor?, _ frame:CGRect?, _ type:UIButton.ButtonType?){
         self.init(type: type ?? ButtonType.system)
         self.setTitle(title, for: UIControl.State.normal)
         self.setTitleColor(titleColor, for: UIControl.State.normal)
-        self.backgroundColor = btColor
+        self.backgroundColor = btColor ?? .clear
         if let _ = frame {
              self.frame = frame!
         }

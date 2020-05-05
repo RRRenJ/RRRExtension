@@ -18,13 +18,12 @@ public extension UITableView {
         }else{
             self.tableFooterView = UIView()
         }
-       
     }
     func footerViewEmptyAll() {
         self.tableFooterView = UIView()
     }
-
     
+ 
     func footerView(message:String, msgFrame:CGRect, _ image:String?, _ imgFrame:CGRect?) {
         let footerView : UIView!
         var footerHeight = msgFrame.maxY
