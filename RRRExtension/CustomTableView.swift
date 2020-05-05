@@ -38,7 +38,7 @@ public extension UITableView {
             imageView.image = UIImage(named: image!)
             footerView.addSubview(imageView)
         }
-        let msgLb = UILabel(title: message, color: UIColor.hex(hexCode: "999999"), font: UIFont.systemFont(ofSize: 14), NSTextAlignment.center, msgFrame)
+        let msgLb = UILabel(title: message, color: UIColor.hex("999999"), font: UIFont.systemFont(ofSize: 14), NSTextAlignment.center, msgFrame)
         msgLb.numberOfLines = 0
         footerView.addSubview(msgLb)
         self.tableFooterView = footerView
