@@ -29,5 +29,19 @@ public extension UIView {
         shapeLayer.path = path.cgPath
         self.layer.mask = shapeLayer
     }
+    
+    func size() -> CGSize {
+        return self.frame.size
+    }
+    
+    func height() -> CGFloat {
+        return self.size().height
+    }
+    
+    func width() -> CGFloat {
+        return self.size().width
+    }
 
+    
+    
 }
