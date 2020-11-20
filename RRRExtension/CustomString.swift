@@ -33,7 +33,7 @@ public extension String {
         return String(self[start ..< end])
     }
 }
-
+//size
 public extension String {
     
     func boundingRect(with constrainedSize: CGSize, font: UIFont, lineSpacing: CGFloat? = nil, lines: Int) -> CGSize {
@@ -79,7 +79,7 @@ public extension String {
         return size
     }
 }
-
+//validate
 public extension String {
     
     func validate(regex:String) -> Bool {
@@ -113,7 +113,7 @@ public extension String {
     }
     
 }
-
+//html
 public extension String {
 
     func clearHtml(marks:[String]?,comple :@escaping (String) -> Void) {
@@ -153,5 +153,19 @@ public extension String {
         return htmlToAttributedString?.string ?? ""
     }
  
+}
+
+//encryption
+public extension String {
+    var md5: String{
+        let ccharArray = self.cString(using: String.Encoding.utf8)
+        
+        var uint8Array = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
+            
+        CC_MD5(ccharArray, CC_LONG(ccharArray!.count - 1), &uint8Array)
+            
+        return uint8Array.reduce("") { $0 + String(format: "%02X", $1)
+        }
+    }
 }
 
