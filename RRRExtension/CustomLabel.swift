@@ -10,7 +10,7 @@ import UIKit
 
 public extension UILabel{
 
-    convenience init( title:String, color:UIColor, font:UIFont, _ textAlignment:NSTextAlignment?, _ frame:CGRect?) {
+    convenience init( title:String, color:UIColor, font:UIFont, _ textAlignment:NSTextAlignment?, _ frame:CGRect? = nil) {
         self.init()
         self.text = title
         self.textColor = color

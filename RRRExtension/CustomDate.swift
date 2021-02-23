@@ -25,7 +25,7 @@ public extension Date {
     ///   - string: string
     ///   - format: Formate
     /// - Returns: date
-    static func dateFromString(string:String, _ format:Formate?) -> Date? {
+    static func dateFromString(string:String, _ format:Formate? = nil) -> Date? {
         let dateFormat = DateFormatter.init()
         if let _ = format {
             var formatStr :String!

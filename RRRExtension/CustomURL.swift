@@ -10,7 +10,7 @@ import UIKit
 
 public extension URL {
     
-    static func initPercent(string:String) -> URL? {
+    static func initPercent(_ string:String) -> URL? {
         let unEncodeStr = string.removingPercentEncoding
         let percentStr : String?
         if unEncodeStr != nil {

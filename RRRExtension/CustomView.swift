@@ -30,18 +30,16 @@ public extension UIView {
         self.layer.mask = shapeLayer
     }
     
-    func size() -> CGSize {
+    var size : CGSize{
         return self.frame.size
     }
     
-    func height() -> CGFloat {
-        return self.size().height
+    var height : CGFloat {
+        return self.size.height
     }
     
-    func width() -> CGFloat {
-        return self.size().width
+    var width : CGFloat {
+        return self.size.width
     }
 
-    
-    
 }

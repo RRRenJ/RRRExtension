@@ -11,14 +11,19 @@ import UIKit
 
 public extension UIButton {
 
-    convenience init(title:String?, titleColor:UIColor?, btColor:UIColor?, _ frame:CGRect?, _ type:UIButton.ButtonType?){
-        self.init(type: type ?? ButtonType.system)
-        self.setTitle(title, for: UIControl.State.normal)
-        self.setTitleColor(titleColor, for: UIControl.State.normal)
+    convenience init(_ title:String?, _ titleColor:UIColor?, _ btColor:UIColor?, _ frame:CGRect? = nil, _ type:UIButton.ButtonType? = .custom){
+        self.init(type: type ?? .custom)
+        self.setTitle(title, for: .normal)
+        self.setTitleColor(titleColor, for: .normal)
         self.backgroundColor = btColor ?? .clear
         if let _ = frame {
              self.frame = frame!
         }
+    }
+    
+    func rounded(_ corner : CGFloat) {
+        self.layer.cornerRadius = corner
+        self.layer.masksToBounds = true
     }
 }
 
