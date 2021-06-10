@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "RRRExtension"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "个人使用的swift扩展汇集"
   s.description  = <<-DESC
                     个人使用的swift扩展汇集

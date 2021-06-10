@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CommonCrypto
 
 public extension String {
 
@@ -103,7 +104,7 @@ public extension String {
     }
     
     func validataMoney() -> Bool {
-        let moneyRegex = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let moneyRegex = "^[0-9]+(.[0-9]{1,2})?$"
         return self.validate(regex: moneyRegex)
     }
     
@@ -164,8 +165,7 @@ public extension String {
             
         CC_MD5(ccharArray, CC_LONG(ccharArray!.count - 1), &uint8Array)
             
-        return uint8Array.reduce("") { $0 + String(format: "%02X", $1)
-        }
+        return uint8Array.reduce("") { $0 + String(format: "%02X", $1)}
     }
 }
 
